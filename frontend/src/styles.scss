@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+    --primary-color: #fefefe;
+    --primary-text-color: #222;
+    --secondary-color: #111;
+    --secondary-text-color: #fefefe;
+    --border-color: #a1a1a1;
+
+    --header-height: 113px;
+    --footer-height: 100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+	box-sizing: border-box;
+
+    text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	scroll-behavior: smooth;
+
+	::-webkit-scrollbar {
+		width: 10px;
+		background: #35344d;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #212030ec;
+		border-radius: 8px;
+		border: #333;
+	}
+}
+
+body {
+    position: relative;
+    // display: flex;
+    // flex-direction: column;
+    overflow-y: auto;
+    
+    font-size: .9rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: lighter;
+
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 10px 15px;
+
+    &:hover {
+        box-shadow: 0px 0px 5px 0px #8d8d8d;
+    }
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // height: calc(100vh - var(--footer-height));
+}
+
+a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+}

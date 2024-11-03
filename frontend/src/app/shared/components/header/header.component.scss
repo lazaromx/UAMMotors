@@ -1,0 +1,46 @@
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+    color: var(--primary-text-color);
+
+    .empty, .login{
+        width: 15%;
+    }
+
+    .login{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+
+        h1{
+            font-weight: 400;
+        }
+
+        img,h1{
+            margin: 10px;
+        }
+
+        img{
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+button{
+    background-color: var(--secondary-color);
+        
+    a{
+        text-decoration: none;
+        color: var(--secondary-text-color);
+    }
+}
