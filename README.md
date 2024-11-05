@@ -1,6 +1,6 @@
 # Anhembi Motors
 
-## WIP
+## Work in Progress
 
 - [x] banco de dados
 - [ ] cadastro veiculo com img
