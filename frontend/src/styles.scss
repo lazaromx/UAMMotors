@@ -9,6 +9,8 @@
 
     --header-height: 113px;
     --footer-height: 80px;
+
+    --background-image: url("/uamMotors.jpg");
 }
 
 * {
@@ -34,6 +36,7 @@
 		border-radius: 8px;
 		border: #333;
 	}
+
 }
 
 body {
@@ -71,4 +74,8 @@ main {
 a {
     color: var(--primary-text-color);
     text-decoration: none;
+}
+
+input {
+    padding: 5px;
 }

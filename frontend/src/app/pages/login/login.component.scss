@@ -1,5 +1,8 @@
 main{
     min-height: 100vh;
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center;
 }
 .container {
     background-color: white; 
@@ -9,6 +12,17 @@ main{
     text-align: center;
     width: 400px; 
     max-width: 80%; 
+    color: #067bf8;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
 }
 
 .form-section h1 {
@@ -36,13 +50,84 @@ main{
     }
 }
 
-p{
+.input-group p{
     width: 100%;
     display: flex;
     justify-content: flex-end;
 
     a{
         text-decoration: none;
+        font-size: 13px;
     }
+}
+
+.cadastro {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    p{
+        margin-right: 5px;
+        font-size: 13px;
+
+    }
+
+}
+
+.nomeSobrenome{
+    display: flex;
+    justify-content: space-between;
    
 }
+
+.btnCadastro{
+    background: none;
+    margin: 0;
+    border: none;
+
+    :hover{
+        border: none;
+    }
+}
+
+
+
+
+
+// .container {
+//     max-width: 800px;
+//     margin: 32px auto;
+
+//     h1 {
+//         text-align: center;
+
+//     }
+
+//     swiper-slide {
+//         text-align: center;
+//         font-size: 24px;
+//         border-radius: 24px;
+//         padding: 16px 0;
+//         height: 400px;
+
+
+//         &:nth-of-type(1) {
+//             background-color: #780000;
+//             color: white
+//         }
+
+//         &:nth-of-type(2) {
+//             background-color: #fdf0d5;
+//         }
+
+//         &:nth-of-type(3) {
+//             background-color: #003049;
+//             color: white;
+//         }
+
+//         &:nth-of-type(4) {
+//             background-color: #669bbc;
+//         }
+//     }
+// }

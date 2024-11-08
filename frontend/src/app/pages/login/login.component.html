@@ -1,29 +1,76 @@
 <main>
-    <div class="container">
+    <div class="container glass">
         <!-- <div class="form-toggle">
             <button onclick="showLogin()">Login</button>
             <button onclick="showCadastro()">Cadastro</button>
         </div> -->
-    
+        <swiper-container #swiper (slideChangeTransitionStart)="onSlideChange($event)">
+			<swiper-slide>
+				<div class="slide">
+                    <h1>Login</h1>
+                    <form onsubmit="return validarLogin()">
+                        <div class="input-group">
+                            <label for="login-email">Email:</label>
+                            <input type="email" id="login-email" name="email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="login-senha">Senha:</label>
+                            <input type="password" id="login-senha" name="senha" required>
+                            <p><a href="#" onclick="mostrarRecuperarSenha()">Esqueci a senha</a></p>
+                        </div>
+                        <button type="submit">Entrar</button>
+                        <div class="cadastro">
+                            <p>Ainda não possui uma conta?</p>
+                            <button class="btnCadastro" (click)="slide.slideNext()" size="large" color="secondary">cadastre-se</button>
+                        </div>
+        
+                        <div class="extra-options">
+                            <button type="button" class="funcionario-btn" onclick="mostrarAcessoFuncionario()"><p>Acesso de Funcionário</p></button>
+                        </div>
+                    </form>
+                </div>
+            </swiper-slide>
+            <swiper-slide>
+                <div class="slide">
+                    <h1>Cadastrar</h1>
+                    <form action="" method="post">
+
+                        <div class="input-group">
+                            <div class="nomeSobrenome">
+                                <div class="nome">
+                                    <label for="nome">Digite seu nome:</label>
+                                    <input type="text" name="nome">
+                                </div>
+                                
+                                <div class="sobrenome">
+                                    <label for="sobrenome">Digite seu sobrenome:</label>
+                                <input type="text" name="sobrenome">
+                                </div>
+                            </div>
+        
+                            <label for="email">Digite seu email: </label>
+                            <input type="email" name="email">
+        
+                            <label for="senha">Digite sua senha:</label>
+                            <input type="password" name="senha">
+        
+                            <label for="repetirSenha">Confirme sua senha:</label>
+                            <input type="password" name="repetirSenha">
+        
+                            <label for="telefone">Digite Seu telefone:</label>
+                            <input type="tel" name="telefone">
+        
+                            <label for="cpf">Digite seu cpf:</label>
+                            <input type="number" name="cpf">
+                        </div>
+                    </form>
+
+                </div>
+            </swiper-slide>
+        </swiper-container> 
        
         <div id="login-form" class="form-section">
-            <h1>Login</h1>
-            <form onsubmit="return validarLogin()">
-                <div class="input-group">
-                    <label for="login-email">Email:</label>
-                    <input type="email" id="login-email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="login-senha">Senha:</label>
-                    <input type="password" id="login-senha" name="senha" required>
-                    <p><a href="#" onclick="mostrarRecuperarSenha()">Esqueci a senha</a></p>
-                </div>
-                <button type="submit">Entrar</button>
-                <div class="extra-options">
-                    
-                    <button type="button" class="funcionario-btn" onclick="mostrarAcessoFuncionario()">Acesso de Funcionário</button>
-                </div>
-            </form>
+            
         </div>
     
     </div>
