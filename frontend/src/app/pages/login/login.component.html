@@ -33,29 +33,28 @@
             <swiper-slide>
                 <div class="slide">
                     <h1>Cadastrar</h1>
-                    <form action="" method="post">
-
+                    <form (ngSubmit)="onSubmit()">
                         <div class="input-group">
                             <div class="nomeSobrenome">
                                 <div class="nome">
                                     <label for="nome">Digite seu nome:</label>
-                                    <input type="text" name="nome">
+                                    <input type="text" name="nome" [(ngModel)] = "cliente.nome" required>
                                 </div>
                                 
                                 <div class="sobrenome">
                                     <label for="sobrenome">Digite seu sobrenome:</label>
-                                <input type="text" name="sobrenome">
+                                <input type="text" name="sobrenome" [(ngModel)] = "cliente.sobrenome" required>
                                 </div>
                             </div>
         
                             <label for="email">Digite seu email: </label>
-                            <input type="email" name="email">
+                            <input type="email" name="email" [(ngModel)] = "cliente.email" required>
         
                             <label for="senha">Digite sua senha:</label>
-                            <input type="password" name="senha">
+                            <input type="password" name="senha" [(ngModel)] = "cliente.senha" required>
         
                             <label for="repetirSenha">Confirme sua senha:</label>
-                            <input type="password" name="repetirSenha">
+                            <input type="password" name="repetirSenha" [(ngModel)] = "repetirSenha" required>
         
                             <label for="telefone">Digite Seu telefone:</label>
                             <input type="tel" name="telefone">
