@@ -1,40 +1,29 @@
 package br.uam.motors.models;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
-@Entity
-@Table(name = "clientes")
-public class Cliente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class ClienteDTO {
 
-    @Column(nullable = false)
+    @NotEmpty(message = "Nome é obrigatório")
     private String nome;
 
-    @Column(nullable = false)
+    @NotEmpty(message = "Sobrenome é obrigatório")
     private String sobrenome;
 
-    @Column(nullable = false, unique = true)
+    @NotEmpty(message = "cpf é obrigatório")
     private String cpf;
+
     private String telefone;
+    private String endereco;
 
-    public String endereco;
-
-    @Column(nullable = false, unique = true)
+    @NotEmpty(message = "Email é obrigatório")
+    @Email
     private String email;
 
-    @Column(nullable = false)
+    @NotEmpty(message = "Senha é obrigatório")
     private String senha;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -82,6 +71,10 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public void setSenha(String senha) {
