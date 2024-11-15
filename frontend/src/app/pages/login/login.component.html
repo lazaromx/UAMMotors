@@ -8,7 +8,7 @@
 			<swiper-slide>
 				<div class="slide">
                     <h1>Login</h1>
-                    <form onsubmit="return validarLogin()">
+                    <form (onSubmit)="onLogin()">
                         <div class="input-group">
                             <label for="login-email">Email:</label>
                             <input type="email" id="login-email" name="email" required>
@@ -33,36 +33,44 @@
             <swiper-slide>
                 <div class="slide">
                     <h1>Cadastrar</h1>
-                    <form (ngSubmit)="onSubmit()">
+                    <form (ngSubmit)="submit()">
                         <div class="input-group">
                             <div class="nomeSobrenome">
                                 <div class="nome">
                                     <label for="nome">Digite seu nome:</label>
-                                    <input type="text" name="nome" [(ngModel)] = "cliente.nome" required>
+                                    <input type="text" name="nome" [(ngModel)]="cliente.nome" required>
                                 </div>
+
+                                <!-- <div *ngIf="loginForm && formDir.submitted" class="validation-error">
+                                    <p>O nome é obrigatório</p>
+                                </div> -->
                                 
                                 <div class="sobrenome">
                                     <label for="sobrenome">Digite seu sobrenome:</label>
-                                <input type="text" name="sobrenome" [(ngModel)] = "cliente.sobrenome" required>
+                                <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" required>
                                 </div>
                             </div>
         
                             <label for="email">Digite seu email: </label>
-                            <input type="email" name="email" [(ngModel)] = "cliente.email" required>
+                            <input type="email" name="email" [(ngModel)]="cliente.email" required>
         
                             <label for="senha">Digite sua senha:</label>
-                            <input type="password" name="senha" [(ngModel)] = "cliente.senha" required>
+                            <input type="password" name="senha" pattern=".{8,}" title="A senha deve ter pelo menos 8 caracteres" [(ngModel)]="cliente.senha" required>
         
                             <label for="repetirSenha">Confirme sua senha:</label>
-                            <input type="password" name="repetirSenha" [(ngModel)] = "repetirSenha" required>
+                            <input type="password" name="repetirSenha" [(ngModel)]="repetirSenha" required>
         
                             <label for="telefone">Digite Seu telefone:</label>
-                            <input type="tel" name="telefone">
+                            <input type="tel" name="telefone" [(ngModel)]="cliente.telefone">
         
                             <label for="cpf">Digite seu cpf:</label>
-                            <input type="number" name="cpf">
+                            <input type="number" name="cpf" [(ngModel)]="cliente.cpf">
                         </div>
-                    </form>
+
+                        <button type="submit" class="btnCadastrar" (click)="onCadastrar()">Cadastrar</button>
+                    </form> 
+
+                    <!-- <h1>{{cliente | json}}</h1> -->
 
                 </div>
             </swiper-slide>

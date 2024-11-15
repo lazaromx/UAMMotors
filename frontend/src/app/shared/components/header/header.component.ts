@@ -7,7 +7,7 @@ import { Routes } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [SearchComponent, RouterOutlet],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

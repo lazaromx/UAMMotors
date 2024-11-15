@@ -15,18 +15,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("")
+//@CrossOrigin(origins="http://localhost:4200")
 public class ClienteController {
 @Autowired
 public ClienteRepository clienteRepository;
 
-
-@GetMapping("")
+@GetMapping("clientes")
 public ResponseEntity<Iterable<Cliente>> getClientes() {
     Iterable<Cliente> clientes = clienteRepository.findAll();
     return ResponseEntity.ok(clientes);
 }
-@PostMapping("")
+
+@GetMapping("clientes/{id}")
+public ResponseEntity<Iterable<Cliente>> getCliente() {
+    Iterable<Cliente> clientes = clienteRepository.findAll();
+    return ResponseEntity.ok(clientes);
+}
+
+@PostMapping("clientes")
 public ResponseEntity<?> cadastrar (@Valid @RequestBody ClienteDTO dto, BindingResult result){
     if(clienteRepository.findByEmail(dto.getEmail()) != null){
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado");
@@ -45,10 +52,7 @@ public ResponseEntity<?> cadastrar (@Valid @RequestBody ClienteDTO dto, BindingR
 
     clienteRepository.save(cliente);
     return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
-
 }
-
-
 
 //    public ResponseEntity<?> cadastrarCliente(@Valid @RequestBody ClienteDTO dto, BindingResult result){
 //        if(clienteRepository.findByEmail(dto.getEmail()) !=null) {
