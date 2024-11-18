@@ -38,6 +38,9 @@ public ResponseEntity<?> cadastrar (@Valid @RequestBody ClienteDTO dto, BindingR
     if(clienteRepository.findByEmail(dto.getEmail()) != null){
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado");
     }
+    if(clienteRepository.findByCpf(dto.getCpf()) != null){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Cpf já cadastrado");
+    }
     if(result.hasErrors()) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.getAllErrors());
     }

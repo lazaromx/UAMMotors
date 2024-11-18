@@ -3,7 +3,6 @@ package br.uam.motors.models;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
-
 public class ClienteDTO {
 
     @NotEmpty(message = "Nome é obrigatório")
