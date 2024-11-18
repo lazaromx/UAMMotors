@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormBuilder} from '@angular/forms';
 import Swiper from 'swiper';
 
+
 import {Cliente, Usuario} from '../../models/Cliente'
 import { ClienteService } from '../../services/cliente.service';
 import { catchError } from 'rxjs';
@@ -43,11 +44,12 @@ export class LoginComponent implements OnInit {
     ],
     'email': [
       { type: 'required', message: 'Email é Obrigatório.' },
-      { type: 'email', message: 'Email inválido.' }
+      { type: 'email', message: 'Email inválido.' },
+      { type: 'exists', message: 'Email ja cadastrado.' },
     ],
     'senha': [
       { type: 'required', message: 'Senha é Obrigatório.' },
-      { type: 'minlength', message: 'A senha deve ter pelo menos 8 caracteres.' }
+      { type: 'minlength', message: 'A senha deve ter pelo menos 8 caracteres.' },
     ],
     'confirmarSenha': [
       { type: 'required', message: 'Confirmar senha é Obrigatório.' },
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
       { type: 'required', message: 'Obrigatório.' }
     ],
     'cpf': [
-      { type: 'required', message: 'Obrigatório.' }
+      { type: 'required', message: 'Cpf é Obrigatório.' }
     ]
   }
 
@@ -105,15 +107,48 @@ export class LoginComponent implements OnInit {
     alert('Formulário enviado com sucesso!');
   }
 
-  async submit(values: Cliente){
-    if(values.senha !== values.confirmarSenha){
-      alert('Senhas diferentes');
-      return;
-    }
-    console.log('enviado:', values);
-      this.clienteService.cadastrar(values).pipe(catchError(error => {
-        console.log(error);
-        return [];
-      }))
+  // submit(values: Cliente) {
+  //   console.log('Formulário enviado:', values);
+  //   this.clienteService.cadastrar(values).subscribe(retorno => {
+  //     console.log('Retorno do servidor:', retorno);
+  //   });
+  // }
+
+  submit(values: Cliente){
+    
+    this.clienteService.cadastrar(values).subscribe(
+      retorno => {
+        console.log('Retorno do servidor:', retorno)
+        alert("Cadastro realizado com sucesso!");
+        this.resetForm();
+      }, 
+      (error) => {
+        console.log("Erro: ", error)
+        if(error.status === 409 && error.error.includes("Email já cadastrado")){
+          console.log("Este e-mail já está em uso. Por favor, escolha outro.");
+          alert("Este e-mail já está em uso. Por favor, escolha outro.");
+          return;
+        }
+        if(error.status === 409 && error.error.includes("Cpf já cadastrado")){
+          alert("Este cpf já está em uso.");
+          return;
+        }
+        if(values.senha !== values.confirmarSenha){
+          alert('Senhas diferentes');
+        }
+      });
+        
   }
+
+  // async submit(values: Cliente){
+  //   if(values.senha !== values.confirmarSenha){
+  //     alert('Senhas diferentes');
+  //     return;
+  //   }
+  //   console.log('enviado:', values);
+  //     this.clienteService.cadastrar(values).pipe(catchError(error => {
+  //       console.log(error);
+  //       return [];
+  //     }))
+  // }
 }

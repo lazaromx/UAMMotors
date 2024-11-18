@@ -8,7 +8,7 @@
 			<swiper-slide>
 				<div class="slide">
                     <h1>Login</h1>
-                    <form (onSubmit)="onLogin()" class="formLogin">
+                    <form (ngSubmit)="onLogin()" class="formLogin">
                         <div class="input-group">
                             <label for="login-email">Email:</label>
                             <input type="email" id="login-email" name="email" required>
@@ -18,7 +18,10 @@
                             <input type="password" id="login-senha" name="senha" required>
                             <p><a href="#" onclick="mostrarRecuperarSenha()">Esqueci a senha</a></p>
                         </div>
+
                         <button type="submit">Entrar</button>
+                    
+                    
                         <div class="cadastro">
                             <p>Ainda não possui uma conta?</p>
                             <button class="btnCadastro" (click)="slide.slideNext()" size="large" color="secondary"><p>cadastre-se</p></button>
@@ -36,71 +39,61 @@
                     <form (ngSubmit)="submit(cadastroForm.value)" [formGroup]="cadastroForm" class="formCadastro">
                         <div class="input-group">
                             <div class="nomeSobrenome">
-                                <div class="nome">
+                                <div>
                                     <label for="nome">Digite seu nome:</label>
                                     <input type="text" name="nome" formControlName="nome" required>
-                                </div>
 
-                                @for(validation of validationMessages.nome; track $index){
-                                    @if(hasInputError('nome', validation.type)){
-                                        <div  class="validation-error">
-                                            <p>O nome é obrigatório</p>
+                                    <div *ngFor="let validation of validationMessages.nome">
+                                        <div *ngIf="hasInputError('nome', validation.type)" class="validation-error">
+                                            <p>{{validation.message}}</p>
                                         </div>
-                                    }  
-                                }
+                                    </div>
+                                </div>
                                 
-                                <div class="sobrenome">
+                            
+                                <div>
                                     <label for="sobrenome">Digite seu sobrenome:</label>
                                     <input type="text" name="sobrenome" formControlName="sobrenome" required>
-                                </div>
 
-                                @for(validation of validationMessages.sobrenome; track $index){
-                                    @if(hasInputError('sobrenome', validation.type)){
-                                        <div  class="validation-error">
-                                            <p>O sobrenome é obrigatório</p>
+                                    <div *ngFor="let validation of validationMessages.sobrenome">
+                                        <div *ngIf="hasInputError('sobrenome', validation.type)" class="validation-error">
+                                            <p>{{validation.message}}</p>
                                         </div>
-                                    }  
-                                }
+                                    </div>
+                                </div>
+                                
                             </div>
         
                             <label for="email">Digite seu email: </label>
-                            <input type="email" name="email" formControlName="email" required>
-
-                            @for(validation of validationMessages.email; track $index){
-                                @if(hasInputError('email', validation.type)){
-                                    <div  class="validation-error">
-                                        <p>O email é obrigatório</p>
-                                    </div>
-                                }  
-                            }
+                            <input type="email" name="email" formControlName="email" required email exists>
+                            <div *ngFor="let validation of validationMessages.email">
+                                <div *ngIf="hasInputError('email', validation.type)" class="validation-error">
+                                    <p>{{validation.message}}</p>
+                                </div>
+                            </div>
 
                             <div class="senha">
                                 <div>
                                     <label for="senha">Digite sua senha:</label>
-                                    <input type="password" name="senha" formControlName="senha" required>
+                                    <input type="password" name="senha" formControlName="senha" required minlength="8">
 
-                                    @for(validation of validationMessages.senha; track $index){
-                                        @if(hasInputError('senha', validation.type)){
-                                            <div  class="validation-error">
-                                                <p>A senha é obrigatório</p>
-                                            </div>
-                                        }  
-                                    }
+                                    <div *ngFor="let validation of validationMessages.senha">
+                                        <div *ngIf="hasInputError('senha', validation.type)" class="validation-error">
+                                            <p>{{validation.message}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div>
                                     <label for="repetirSenha">Confirme sua senha:</label>
                                     <input type="password" name="repetirSenha" formControlName="confirmarSenha" required>
-
-                                    @for(validation of validationMessages.confirmarSenha; track $index){
-                                        @if(hasInputError('confirmarSenha', validation.type)){
-                                            <div  class="validation-error">
-                                                <p>O campo é obrigatório</p>
-                                            </div>
-                                        }  
-                                    }
+                                    <div *ngFor="let validation of validationMessages.confirmarSenha">
+                                        <div *ngIf="hasInputError('confirmarSenha', validation.type)" class="validation-error">
+                                            <p>{{validation.message}}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                
+                           
                             </div>
         
                             <div class="telCpf">
@@ -112,14 +105,11 @@
                                 <div>
                                     <label for="cpf">Digite seu cpf:</label>
                                     <input type="number" name="cpf" formControlName="cpf" required>
-                                        
-                                    @for(validation of validationMessages.cpf; track $index){
-                                        @if(hasInputError('cpf', validation.type)){
-                                            <div  class="validation-error">
-                                                <p>O cpf é obrigatório</p>
-                                            </div>
-                                        }  
-                                    }
+                                    <div *ngFor="let validation of validationMessages.cpf">
+                                        <div *ngIf="hasInputError('cpf', validation.type)" class="validation-error">
+                                            <p>{{validation.message}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
         
