@@ -8,7 +8,7 @@
 			<swiper-slide>
 				<div class="slide">
                     <h1>Login</h1>
-                    <form (onSubmit)="onLogin()">
+                    <form (onSubmit)="onLogin()" class="formLogin">
                         <div class="input-group">
                             <label for="login-email">Email:</label>
                             <input type="email" id="login-email" name="email" required>
@@ -21,7 +21,7 @@
                         <button type="submit">Entrar</button>
                         <div class="cadastro">
                             <p>Ainda não possui uma conta?</p>
-                            <button class="btnCadastro" (click)="slide.slideNext()" size="large" color="secondary">cadastre-se</button>
+                            <button class="btnCadastro" (click)="slide.slideNext()" size="large" color="secondary"><p>cadastre-se</p></button>
                         </div>
         
                         <div class="extra-options">
@@ -33,41 +33,102 @@
             <swiper-slide>
                 <div class="slide">
                     <h1>Cadastrar</h1>
-                    <form (ngSubmit)="submit()">
+                    <form (ngSubmit)="submit(cadastroForm.value)" [formGroup]="cadastroForm" class="formCadastro">
                         <div class="input-group">
                             <div class="nomeSobrenome">
                                 <div class="nome">
                                     <label for="nome">Digite seu nome:</label>
-                                    <input type="text" name="nome" [(ngModel)]="cliente.nome" required>
+                                    <input type="text" name="nome" formControlName="nome" required>
                                 </div>
 
-                                <!-- <div *ngIf="loginForm && formDir.submitted" class="validation-error">
-                                    <p>O nome é obrigatório</p>
-                                </div> -->
+                                @for(validation of validationMessages.nome; track $index){
+                                    @if(hasInputError('nome', validation.type)){
+                                        <div  class="validation-error">
+                                            <p>O nome é obrigatório</p>
+                                        </div>
+                                    }  
+                                }
                                 
                                 <div class="sobrenome">
                                     <label for="sobrenome">Digite seu sobrenome:</label>
-                                <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" required>
+                                    <input type="text" name="sobrenome" formControlName="sobrenome" required>
                                 </div>
+
+                                @for(validation of validationMessages.sobrenome; track $index){
+                                    @if(hasInputError('sobrenome', validation.type)){
+                                        <div  class="validation-error">
+                                            <p>O sobrenome é obrigatório</p>
+                                        </div>
+                                    }  
+                                }
                             </div>
         
                             <label for="email">Digite seu email: </label>
-                            <input type="email" name="email" [(ngModel)]="cliente.email" required>
+                            <input type="email" name="email" formControlName="email" required>
+
+                            @for(validation of validationMessages.email; track $index){
+                                @if(hasInputError('email', validation.type)){
+                                    <div  class="validation-error">
+                                        <p>O email é obrigatório</p>
+                                    </div>
+                                }  
+                            }
+
+                            <div class="senha">
+                                <div>
+                                    <label for="senha">Digite sua senha:</label>
+                                    <input type="password" name="senha" formControlName="senha" required>
+
+                                    @for(validation of validationMessages.senha; track $index){
+                                        @if(hasInputError('senha', validation.type)){
+                                            <div  class="validation-error">
+                                                <p>A senha é obrigatório</p>
+                                            </div>
+                                        }  
+                                    }
+                                </div>
+                                
+                                <div>
+                                    <label for="repetirSenha">Confirme sua senha:</label>
+                                    <input type="password" name="repetirSenha" formControlName="confirmarSenha" required>
+
+                                    @for(validation of validationMessages.confirmarSenha; track $index){
+                                        @if(hasInputError('confirmarSenha', validation.type)){
+                                            <div  class="validation-error">
+                                                <p>O campo é obrigatório</p>
+                                            </div>
+                                        }  
+                                    }
+                                </div>
+                                
+                            </div>
         
-                            <label for="senha">Digite sua senha:</label>
-                            <input type="password" name="senha" pattern=".{8,}" title="A senha deve ter pelo menos 8 caracteres" [(ngModel)]="cliente.senha" required>
+                            <div class="telCpf">
+                                <div>
+                                    <label for="telefone">Digite Seu telefone:</label>
+                                    <input type="tel" name="telefone" formControlName="telefone">
+                                </div>
+
+                                <div>
+                                    <label for="cpf">Digite seu cpf:</label>
+                                    <input type="number" name="cpf" formControlName="cpf" required>
+                                        
+                                    @for(validation of validationMessages.cpf; track $index){
+                                        @if(hasInputError('cpf', validation.type)){
+                                            <div  class="validation-error">
+                                                <p>O cpf é obrigatório</p>
+                                            </div>
+                                        }  
+                                    }
+                                </div>
+                            </div>
         
-                            <label for="repetirSenha">Confirme sua senha:</label>
-                            <input type="password" name="repetirSenha" [(ngModel)]="repetirSenha" required>
+                            
         
-                            <label for="telefone">Digite Seu telefone:</label>
-                            <input type="tel" name="telefone" [(ngModel)]="cliente.telefone">
-        
-                            <label for="cpf">Digite seu cpf:</label>
-                            <input type="number" name="cpf" [(ngModel)]="cliente.cpf">
+                            
                         </div>
 
-                        <button type="submit" class="btnCadastrar" (click)="onCadastrar()">Cadastrar</button>
+                        <button type="submit" class="btnCadastrar" [disabled]="!cadastroForm.valid">Cadastrar</button>
                     </form> 
 
                     <!-- <h1>{{cliente | json}}</h1> -->
@@ -76,9 +137,7 @@
             </swiper-slide>
         </swiper-container> 
        
-        <div id="login-form" class="form-section">
-            
-        </div>
+    
     
     </div>
 </main>

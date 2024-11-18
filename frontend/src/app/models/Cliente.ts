@@ -7,4 +7,9 @@ export class Cliente{
     endereco: string = '';
     email: string = '';
     senha: string = '';
+    confirmarSenha = '';
+}
+
+export class Usuario extends Cliente{
+    
 }

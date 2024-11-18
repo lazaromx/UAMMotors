@@ -1,6 +1,7 @@
 .banner{
     background-image: url("/uamMotors.jpg");
     background-size: cover;
+    background-position: center;
     width: 100vw;
     height: calc(100vh - (var(--footer-height) + var(--header-height)));
 

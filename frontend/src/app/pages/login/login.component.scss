@@ -4,26 +4,51 @@ main{
     background-size: cover;
     background-position: center;
 }
+
+form{
+    margin-top: 10px;
+}
+
+.formLogin{
+    label{
+        font-size: 18px;    
+    }
+
+    p{
+        font-size: 16px;
+        color: #fff;
+    }
+}
+
+.formCadastro{
+    label{
+
+    }
+}
+
+label{
+    color:#fff;
+    font-weight: bold;
+}
+
+
 .container {
-    background-color: white; 
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 400px; 
     max-width: 80%; 
-    color: #067bf8;
+    // color: #067bf8;
+
+    h1{
+        color: #fff;
+        // text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+
+    }
 }
 
-.glass {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 20px;
-}
+
 
 .form-section h1 {
     margin-bottom: 20px;
@@ -38,9 +63,7 @@ main{
     label {
         display: block;
         margin-bottom: 5px;
-        font-weight: bold;
-        color: #555;
-
+        
         input {
             width: 100%;
             padding: 10px;
@@ -48,16 +71,17 @@ main{
             border-radius: 5px;
         }
     }
-}
 
-.input-group p{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    p{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        font-size:16px;
 
-    a{
-        text-decoration: none;
-        font-size: 13px;
+        a{
+            text-decoration: none;
+            color: #1a1a1a;
+        }
     }
 }
 
@@ -75,12 +99,6 @@ main{
 
 }
 
-.nomeSobrenome{
-    display: flex;
-    justify-content: space-between;
-   
-}
-
 .btnCadastro{
     background: none;
     margin: 0;
@@ -89,11 +107,38 @@ main{
     :hover{
         border: none;
     }
+
+    p{
+        font-size:13px;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
 }
 
 .btnCadastrar{
     background-color: #067bf8;
     color: #fff;
+}
+
+.funcionario-btn{
+    p{
+        color: #1a1a1a;
+    }
+}
+
+.nomeSobrenome,  .senha, .telCpf{
+    display: flex;
+    justify-content: space-between;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
 }
 
 
