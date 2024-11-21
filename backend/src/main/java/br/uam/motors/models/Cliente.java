@@ -84,6 +84,8 @@ public class Cliente {
         this.email = email;
     }
 
+    public String getSenha(){return senha;}
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
