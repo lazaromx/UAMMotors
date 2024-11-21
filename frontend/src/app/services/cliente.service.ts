@@ -21,4 +21,9 @@ export class ClienteService {
   cadastrar(obj: Cliente): Observable<Cliente>{
     return this.http.post<Cliente>(this.url, obj)
   }
+
+  Login(email: string, senha: string): Observable<Cliente>{
+    const loginData = {email, senha};
+    return this.http.post<Cliente>(this.url + '/login', loginData);
+  }
 }

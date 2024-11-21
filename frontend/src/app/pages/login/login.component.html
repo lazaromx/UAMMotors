@@ -8,20 +8,21 @@
 			<swiper-slide>
 				<div class="slide">
                     <h1>Login</h1>
-                    <form (ngSubmit)="onLogin()" class="formLogin">
+                    <form (ngSubmit)="loginCliente(loginForm.value)" [formGroup]="loginForm" class="formLogin">
                         <div class="input-group">
                             <label for="login-email">Email:</label>
-                            <input type="email" id="login-email" name="email" required>
+                            <input type="email" id="login-email" name="email" formControlName="email" required>
                         </div>
                         <div class="input-group">
                             <label for="login-senha">Senha:</label>
-                            <input type="password" id="login-senha" name="senha" required>
+                            <input type="password" id="login-senha" name="senha" formControlName="senha" required>
                             <p><a href="#" onclick="mostrarRecuperarSenha()">Esqueci a senha</a></p>
                         </div>
 
-                        <button type="submit">Entrar</button>
+                        <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
+                    </form>
                     
-                    
+                    <form>
                         <div class="cadastro">
                             <p>Ainda não possui uma conta?</p>
                             <button class="btnCadastro" (click)="slide.slideNext()" size="large" color="secondary"><p>cadastre-se</p></button>
@@ -36,7 +37,7 @@
             <swiper-slide>
                 <div class="slide">
                     <h1>Cadastrar</h1>
-                    <form (ngSubmit)="submit(cadastroForm.value)" [formGroup]="cadastroForm" class="formCadastro">
+                    <form (ngSubmit)="cadastro(cadastroForm.value)" [formGroup]="cadastroForm" class="formCadastro">
                         <div class="input-group">
                             <div class="nomeSobrenome">
                                 <div>
@@ -104,7 +105,7 @@
 
                                 <div>
                                     <label for="cpf">Digite seu cpf:</label>
-                                    <input type="number" name="cpf" formControlName="cpf" required>
+                                    <input type="text" name="cpf" formControlName="cpf" required>
                                     <div *ngFor="let validation of validationMessages.cpf">
                                         <div *ngIf="hasInputError('cpf', validation.type)" class="validation-error">
                                             <p>{{validation.message}}</p>

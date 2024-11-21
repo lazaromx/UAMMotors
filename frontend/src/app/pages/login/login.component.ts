@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     initialSlide: 0,
     speed: 150
   };
+ 
   
   async onSlideChange(event: any) {
     const slides: Swiper = event.target;
@@ -35,6 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   cadastroForm!: FormGroup;
+  loginForm!: FormGroup;
+
   public validationMessages = {
     'nome': [
       { type: 'required', message: 'Nome é Obrigatório.' }
@@ -82,6 +85,11 @@ export class LoginComponent implements OnInit {
   }
 
   private resetForm(){
+    this.loginForm = this.formBuilder.group({
+      email: new FormControl('', [Validators.required]),
+      senha: new FormControl('', [Validators.required])
+    })
+
     this.cadastroForm = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
       sobrenome: new FormControl('', [Validators.required]),
@@ -103,8 +111,8 @@ export class LoginComponent implements OnInit {
     
   }
 
-  onLogin() {
-    alert('Formulário enviado com sucesso!');
+  login(values:any){
+    
   }
 
   // submit(values: Cliente) {
@@ -114,7 +122,7 @@ export class LoginComponent implements OnInit {
   //   });
   // }
 
-  submit(values: Cliente){
+  cadastro(values: Cliente){
     
     this.clienteService.cadastrar(values).subscribe(
       retorno => {
@@ -126,18 +134,36 @@ export class LoginComponent implements OnInit {
         console.log("Erro: ", error)
         if(error.status === 409 && error.error.includes("Email já cadastrado")){
           console.log("Este e-mail já está em uso. Por favor, escolha outro.");
-          alert("Este e-mail já está em uso. Por favor, escolha outro.");
+           alert("Este e-mail já está em uso. Por favor, escolha outro.");
           return;
+        }
+        
+        if(values.senha !== values.confirmarSenha){
+          alert('Senhas diferentes');
         }
         if(error.status === 409 && error.error.includes("Cpf já cadastrado")){
           alert("Este cpf já está em uso.");
           return;
         }
-        if(values.senha !== values.confirmarSenha){
-          alert('Senhas diferentes');
-        }
-      });
         
+      });
+  }
+
+  loginCliente(values: Cliente){
+    this.clienteService.Login(values.email, values.senha).subscribe(  
+      (retorno) => {
+        console.log('Retorno do servidor:', retorno)
+        alert("Login realizado com sucesso!");
+        this.resetForm();
+      },
+      (error) => {
+        console.log("Erro: ", error)
+        if(error.status == 405){
+          alert(error.error);
+        }
+        
+      }
+    )
   }
 
   // async submit(values: Cliente){
