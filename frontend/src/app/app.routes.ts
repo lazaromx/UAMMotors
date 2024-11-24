@@ -13,7 +13,7 @@ export const routes: Routes = [
         component: MenuComponent,
         children: [
             { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
-            { path: 'estoque', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
+            { path: 'estoque', loadComponent: () => import('./pages/estoque/estoque.component').then(m => m.EstoqueComponent) },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' },
