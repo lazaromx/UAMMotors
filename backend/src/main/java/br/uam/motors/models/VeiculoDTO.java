@@ -1,28 +1,33 @@
 package br.uam.motors.models;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public class VeiculoDTO {
+
     @NotEmpty(message = "Marca é obrigatória")
     private String marca;
 
     @NotEmpty(message = "Modelo é obrigatório")
     private String modelo;
 
-//    @Max(value = 2024, message = "Ano não pode ser maior que o ano atual")
-    @NotEmpty(message = "Ano é obrigatório")
+    //    @Max(value = 2024, message = "Ano não pode ser maior que o ano atual")
+    @Positive(message = "Ano deve ser maior que zero")
+    @NotNull(message = "Ano é obrigatório")
     private int ano;
 
     @NotEmpty(message = "Cor é obrigatória")
     private String cor;
 
     @Positive(message = "Preço deve ser maior que zero")
+    @NotNull(message = "Preço é obrigatório")
     private float preco;
 
     @NotEmpty(message = "Status é obrigatório")
     private String status;
+
+    private String imagem;
 
     public String getMarca() {
         return marca;
@@ -72,5 +77,11 @@ public class VeiculoDTO {
         this.status = status;
     }
 
+    public String getImagem(){
+        return imagem;
+    }
 
+    public void setImagem(String imagem){
+        this.imagem = imagem;
+    }
 }

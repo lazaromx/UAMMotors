@@ -18,25 +18,25 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("clientes")
 //@CrossOrigin(origins="http://localhost:4200")
 public class ClienteController {
     @Autowired
     public ClienteRepository clienteRepository;
 
-    @GetMapping("clientes")
+    @GetMapping()
     public ResponseEntity<Iterable<Cliente>> getClientes() {
         Iterable<Cliente> clientes = clienteRepository.findAll();
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("clientes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Iterable<Cliente>> getCliente() {
         Iterable<Cliente> clientes = clienteRepository.findAll();
         return ResponseEntity.ok(clientes);
     }
 
-    @PostMapping("clientes")
+    @PostMapping()
     public ResponseEntity<?> cadastrar (@Valid @RequestBody ClienteDTO dto, BindingResult result){
         if(clienteRepository.findByEmail(dto.getEmail()) != null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado");
@@ -60,7 +60,7 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(Collections.singletonMap("id", cliente.getId()));
     }
 
-    @PostMapping("clientes/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login (@Valid @RequestBody ClienteDTO dto) {
         Cliente cliente = clienteRepository.findByEmailAndSenha(dto.getEmail(), dto.getSenha());
 

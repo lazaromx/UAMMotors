@@ -9,5 +9,3 @@ spring.datasource.password=root
 
 springdoc.swagger-ui.disable-swagger-default-url=true
 springdoc.swagger-ui.path=/doc
-
-logging.level.org.springframework.web=DEBUG

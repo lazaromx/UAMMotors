@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "veiculos")
 public class Veiculo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,6 +27,8 @@ public class Veiculo {
 
     @Column(nullable = false)
     private String status;
+
+    private String imagem;
 
     public int getId() {
         return id;
@@ -81,5 +84,11 @@ public class Veiculo {
         this.status = status;
     }
 
+    public String getImagem(){
+        return imagem;
+    }
 
+    public void setImagem(String imagem){
+        this.imagem = imagem;
+    }
 }
