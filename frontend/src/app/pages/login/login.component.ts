@@ -1,6 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormBuilder} from '@angular/forms';
+import { Router } from '@angular/router';
 import Swiper from 'swiper';
 
 
@@ -67,7 +68,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private clienteService:ClienteService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ){
     
   }
@@ -155,10 +157,11 @@ export class LoginComponent implements OnInit {
         console.log('Retorno do servidor:', retorno)
         alert("Login realizado com sucesso!");
         this.resetForm();
+        this.router.navigate(['estoque'])
       },
       (error) => {
         console.log("Erro: ", error)
-        if(error.status == 405){
+        if(error.status == 404){
           alert(error.error);
         }
         
