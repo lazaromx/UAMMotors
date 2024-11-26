@@ -20,11 +20,11 @@ form{
     }
 }
 
-.formCadastro{
-    label{
+// .formCadastro{
+//     label{
 
-    }
-}
+//     }
+// }
 
 label{
     color:#fff;
@@ -62,6 +62,7 @@ label{
 
     label {
         margin-bottom: 5px;
+        font-weight: 400;
     }
 
     input {
@@ -71,6 +72,10 @@ label{
         display: flex;
         justify-content: center;
         width: 100%;
+        font-size: 16px;
+        height: 36px;
+        font-weight: 500;
+        padding: 8px 12px;
     }
 
     p{
@@ -133,19 +138,20 @@ label{
 }
 
 .validation-error p{
-    color: #fff;
+    color: rgb(184, 28, 28);
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;
+    font-size: .7rem;
 }
 
 .glass {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 5px 5px 45px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(45px);
+    -webkit-backdrop-filter: blur(45px);
+    // border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 20px;
 }
 

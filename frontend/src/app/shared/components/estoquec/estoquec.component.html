@@ -1,0 +1,13 @@
+<div class="car-list">
+    @for (veiculo of veiculos; track $index) {
+        <div class="car-item" >
+            <img [src]="veiculo.imagem" [alt]="veiculo.modelo + ' ' + veiculo.cor">
+            <h3 id="marcaModelo">{{veiculo.marca}} {{veiculo.modelo}}</h3>
+            <p id="ano">{{veiculo.ano}}</p>
+            <p id="cor">{{veiculo.cor}}</p>
+            <p id="preco">R$ {{formatarPreco(veiculo.preco)}}</p>
+            <button>Comprar</button>
+        </div>
+        
+    }
+</div>

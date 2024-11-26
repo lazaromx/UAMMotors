@@ -106,11 +106,15 @@
                                 <div>
                                     <label for="cpf">Digite seu cpf:</label>
                                     <input type="text" name="cpf" formControlName="cpf" required>
-                                    <div *ngFor="let validation of validationMessages.cpf">
-                                        <div *ngIf="hasInputError('cpf', validation.type)" class="validation-error">
-                                            <p>{{validation.message}}</p>
+                                    @for (validation of validationMessages.cpf; track $index) {
+                                        <div>
+                                            @if (hasInputError('cpf', validation.type)) {
+                                                <div class="validation-error">
+                                                    <p>{{validation.message}}</p>
+                                                </div>                                                
+                                            }
                                         </div>
-                                    </div>
+                                    }
                                 </div>
                             </div>
         

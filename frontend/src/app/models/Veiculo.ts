@@ -6,4 +6,6 @@ export class Veiculo{
     preco: number = 0;
     cor: string = '';
     estoque: String = 'estoque';
+    imagem: string = '';
 }
+
