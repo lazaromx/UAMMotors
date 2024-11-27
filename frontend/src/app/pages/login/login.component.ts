@@ -163,8 +163,7 @@ export class LoginComponent implements OnInit {
         console.log("Erro: ", error)
         if(error.status == 404){
           alert(error.error);
-        }
-        
+        }  
       }
     )
   }

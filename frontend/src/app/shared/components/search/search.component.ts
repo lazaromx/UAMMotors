@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { BrowserModule  } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [BrowserModule, ],
+  imports: [FormsModule, ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })

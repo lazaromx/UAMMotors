@@ -1,0 +1,25 @@
+.navbar {
+    padding: 10px 20px; /* Espaçamento ao redor da barra */
+    display: flex;
+    justify-content: center;
+    
+}
+.buttons {
+    display: flex;
+    gap: 15px; 
+    width: 100%; 
+    max-width: 1200px; 
+}
+.buttons button {
+    flex: 1; 
+    background-color: #ffffff;
+    border: none;
+    padding: 15px 0;
+    border-radius: 20px; 
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
+.buttons button:hover {
+    background-color: #dddddd;
+}

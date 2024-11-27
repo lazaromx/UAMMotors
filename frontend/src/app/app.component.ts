@@ -3,8 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { importProvidersFrom } from '@angular/core'; 
 import { NgModule } from '@angular/core';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 @Component({
   selector: 'app-root',
   standalone: true,
