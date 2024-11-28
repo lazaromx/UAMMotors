@@ -15,46 +15,33 @@ import org.springframework.web.bind.annotation.*;
 //@CrossOrigin(origins="http://localhost:4200")
 public class VeiculoController {
     @Autowired
-    public VeiculoRepository veicRepository;
+    public VeiculoRepository veiculoRepository;
 
     @GetMapping()
-    public ResponseEntity<Iterable<Veiculo>> getClientes() {
-        Iterable<Veiculo> veics = veicRepository.findAll();
-        return ResponseEntity.ok(veics);
+    public ResponseEntity<Iterable<Veiculo>> getVeiculos() {
+        Iterable<Veiculo> veiculos = veiculoRepository.findAll();
+        return ResponseEntity.ok(veiculos);
     }
 
     @PostMapping()
-    public ResponseEntity<?> cadastrar (@Valid @RequestBody VeiculoDTO dto, BindingResult result){
+    public ResponseEntity<?> cadastrarVeiculo (@Valid @RequestBody VeiculoDTO dto, BindingResult result){
        
         if(result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.getAllErrors());
         }
 
-        Veiculo veic = new Veiculo();
+        Veiculo veiculo = new Veiculo();
 
-        veic.setMarca(dto.getMarca());
-        veic.setModelo(dto.getModelo());
-        veic.setAno(dto.getAno());
-        veic.setCor(dto.getCor());
-        veic.setPreco(dto.getPreco());
-        veic.setStatus(dto.getStatus());
-        veic.setImagem(dto.getImagem());
+        veiculo.setMarca(dto.getMarca());
+        veiculo.setModelo(dto.getModelo());
+        veiculo.setAno(dto.getAno());
+        veiculo.setCor(dto.getCor());
+        veiculo.setPreco(dto.getPreco());
+        veiculo.setStatus(dto.getStatus());
+        veiculo.setImagem(dto.getImagem());
 
-        veicRepository.save(veic);
-        return ResponseEntity.status(HttpStatus.CREATED).body(veic);
+        veiculoRepository.save(veiculo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(veiculo);
     }
 
-    //    @GetMapping({"", "/"})
-    //    //Entrar no bd, buscar todos os elementos e trazer uma lista
-    //    public String getClientes(Model model){
-    ////
-    ////        //Varredura de todos os clientes do db
-    ////        var clientes = clienteRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-    ////
-    ////        //Atribuindo a clientes do front infomações da variavel cliente do back
-    ////        model.addAttribute("clientes", clientes);
-    ////
-    ////        //Pasta clientes e arquivo index.html
-    //        return "clientes/index";
-    //    }
 }    
