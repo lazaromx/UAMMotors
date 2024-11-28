@@ -131,6 +131,20 @@
                 </div>
             </swiper-slide>
         </swiper-container> 
+
+        <div class="loginFunc">
+            <form (ngSubmit)="loginFuncionario(funcionarioForm.value)" [formGroup]="funcionarioForm" class="formLogin">
+                <div class="input-group">
+                    <label for="usuario">Usuário:</label>
+                <input type="text" name="usuario" formControlName="usuario" placeholder="Digite seu usuário de acesso">
+                </div>
+                <div class="input-group">
+                    <label for="login-senha">Senha:</label>
+                    <input type="password" id="login-senha" name="senha" formControlName="senha" required>
+                </div>
+                <button type="submit" [disabled]="!funcionarioForm.valid" >Entrar</button>
+            </form>
+        </div>
        
     
     

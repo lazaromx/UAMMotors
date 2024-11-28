@@ -1,9 +1,14 @@
-<app-header />
+<app-header/>
 <div class="navbar">
     <div class="buttons">
         <button>Cadastrar Veículos</button>
-        <button>Ver Estoque</button>
+        <button (click)="toggleEstoque()"> {{ this.mostrarEstoque ? 'Esconder Estoque' : 'Estoque'}}</button>
         <button>Relatório de Vendas</button>
     </div>
 </div>
-<app-footer />
+@if(this.mostrarEstoque){
+    <app-estoquec/>
+}   
+<app-footer/>
+
+

@@ -5,8 +5,10 @@ import { Router } from '@angular/router';
 import Swiper from 'swiper';
 
 
-import {Cliente, Usuario} from '../../models/Cliente'
-import { ClienteService } from '../../services/cliente.service';
+import {  Cliente, Usuario} from '../../models/Cliente'
+import {  Funcionario} from '../../models/Funcionario'
+import {  ClienteService } from '../../services/cliente.service';
+import { FuncionarioService } from '../../services/funcionario.service';
 import { catchError } from 'rxjs';
 
 @Component({
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
 
   cadastroForm!: FormGroup;
   loginForm!: FormGroup;
+  funcionarioForm!: FormGroup;
 
   public validationMessages = {
     'nome': [
@@ -68,6 +71,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private clienteService:ClienteService,
+    private funcionarioService: FuncionarioService,
     private formBuilder: FormBuilder,
     private router: Router
   ){
@@ -101,6 +105,11 @@ export class LoginComponent implements OnInit {
       telefone: new FormControl(''),
       cpf: new FormControl('', [Validators.required])
     })
+
+    this.funcionarioForm = this.formBuilder.group({
+      usuario: new FormControl('', [Validators.required]),
+      senha: new FormControl('', [Validators.required])
+    })
   }
 
   hasInputError(fieldName: string, validType: any) {
@@ -110,10 +119,6 @@ export class LoginComponent implements OnInit {
 
 
   validarCpf(cpf: string) {
-    
-  }
-
-  login(values:any){
     
   }
 
@@ -166,6 +171,22 @@ export class LoginComponent implements OnInit {
         }  
       }
     )
+  }
+
+  loginFuncionario(values: Funcionario){
+    this.funcionarioService.login(values.usuario, values.senha).subscribe(
+      (retorno) => {
+        console.log('Retorno do servidor:', retorno)
+        alert("Login realizado com sucesso!");
+        this.resetForm();
+        this.router.navigate(['funcionario'])
+      },
+      (error) =>{
+        console.log("Error: ", error)
+        if(error.status == 404){
+          alert(error.error);
+        }
+      })
   }
 
   // async submit(values: Cliente){
