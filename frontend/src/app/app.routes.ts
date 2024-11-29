@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MenuComponent } from './pages/menu.component';
+import { autorizadoGuard } from './guard/autorizado.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
         ]
     },
     {path: 'funcionario', loadComponent: () => import('./pages/funcionario/funcionario.component').then(m => m.FuncionarioComponent)},
+    {path: 'detalhes', loadComponent: () => import('./pages/info-veiculo/info-veiculo.component').then(m => m.InfoVeiculoComponent), canActivate: [autorizadoGuard] },
     
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

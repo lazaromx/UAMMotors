@@ -10,26 +10,26 @@
                     <h1>Login</h1>
                     <form (ngSubmit)="loginCliente(loginForm.value)" [formGroup]="loginForm" class="formLogin">
                         <div class="input-group">
-                            <label for="login-email">Email:</label>
-                            <input type="email" id="login-email" name="email" formControlName="email" required>
+                            <label for="cliente-email">Email:</label>
+                            <input type="email" id="cliente-email" name="email" formControlName="email" required>
                         </div>
                         <div class="input-group">
-                            <label for="login-senha">Senha:</label>
-                            <input type="password" id="login-senha" name="senha" formControlName="senha" required>
-                            <p><a href="" onclick="mostrarRecuperarSenha()">Esqueci a senha</a></p>
+                            <label for="cliente-senha">Senha:</label>
+                            <input type="password" id="cliente-senha" name="senha" formControlName="senha" required>
+                            <p><a href="">Esqueci a senha</a></p>
                         </div>
 
                         <button type="submit" [disabled]="!loginForm.valid" >Entrar</button>
                     </form>
                     
-                    <form>
+                    <form class="extra">
                         <div class="cadastro">
                             <p>Ainda não possui uma conta?</p>
                             <button class="btnCadastro" (click)="slide.slideNext()" size="large" color="secondary"><p>cadastre-se</p></button>
                         </div>
         
                         <div class="extra-options">
-                            <button type="button" class="funcionario-btn" onclick="mostrarAcessoFuncionario()"><p>Acesso de Funcionário</p></button>
+                            <button type="button" class="funcionario-btn" (click)="mostrarAcessoFuncionario()"><p>Acesso de Funcionário</p></button>
                         </div>
                     </form>
                 </div>
@@ -41,8 +41,8 @@
                         <div class="input-group">
                             <div class="nomeSobrenome">
                                 <div>
-                                    <label for="nome">Digite seu nome:</label>
-                                    <input type="text" name="nome" formControlName="nome" required>
+                                    <label for="cadastro-nome">Digite seu nome:</label>
+                                    <input type="text" id="cadastro-nome" formControlName="nome" required>
 
                                     <div *ngFor="let validation of validationMessages.nome">
                                         <div *ngIf="hasInputError('nome', validation.type)" class="validation-error">
@@ -53,8 +53,8 @@
                                 
                             
                                 <div>
-                                    <label for="sobrenome">Digite seu sobrenome:</label>
-                                    <input type="text" name="sobrenome" formControlName="sobrenome" required>
+                                    <label for="cadastro-sobrenome">Digite seu sobrenome:</label>
+                                    <input type="text" id="cadastro-sobrenome" formControlName="sobrenome" required>
 
                                     <div *ngFor="let validation of validationMessages.sobrenome">
                                         <div *ngIf="hasInputError('sobrenome', validation.type)" class="validation-error">
@@ -65,8 +65,8 @@
                                 
                             </div>
         
-                            <label for="email">Digite seu email: </label>
-                            <input type="email" name="email" formControlName="email" required email exists>
+                            <label for="cadastro-email">Digite seu email: </label>
+                            <input type="email" id="cadastro-email" formControlName="email" required email exists>
                             <div *ngFor="let validation of validationMessages.email">
                                 <div *ngIf="hasInputError('email', validation.type)" class="validation-error">
                                     <p>{{validation.message}}</p>
@@ -75,8 +75,8 @@
 
                             <div class="senha">
                                 <div>
-                                    <label for="senha">Digite sua senha:</label>
-                                    <input type="password" name="senha" formControlName="senha" required minlength="8">
+                                    <label for="cadastro-senha">Digite sua senha:</label>
+                                    <input type="password" id="cadastro-senha" formControlName="senha" required minlength="8">
 
                                     <div *ngFor="let validation of validationMessages.senha">
                                         <div *ngIf="hasInputError('senha', validation.type)" class="validation-error">
@@ -86,8 +86,8 @@
                                 </div>
                                 
                                 <div>
-                                    <label for="repetirSenha">Confirme sua senha:</label>
-                                    <input type="password" name="repetirSenha" formControlName="confirmarSenha" required>
+                                    <label for="cadastro-repetirSenha">Confirme sua senha:</label>
+                                    <input type="password" id="cadastro-repetirSenha" formControlName="confirmarSenha" required>
                                     <div *ngFor="let validation of validationMessages.confirmarSenha">
                                         <div *ngIf="hasInputError('confirmarSenha', validation.type)" class="validation-error">
                                             <p>{{validation.message}}</p>
@@ -99,13 +99,13 @@
         
                             <div class="telCpf">
                                 <div>
-                                    <label for="telefone">Digite Seu telefone:</label>
-                                    <input type="tel" name="telefone" formControlName="telefone">
+                                    <label for="cadastro-telefone">Digite Seu telefone:</label>
+                                    <input type="tel" id="cadastro-telefone" formControlName="telefone">
                                 </div>
 
                                 <div>
-                                    <label for="cpf">Digite seu cpf:</label>
-                                    <input type="text" name="cpf" formControlName="cpf" required>
+                                    <label for="cadastro-cpf">Digite seu cpf:</label>
+                                    <input type="text" id="cadastro-cpf" formControlName="cpf" required>
                                     @for (validation of validationMessages.cpf; track $index) {
                                         <div>
                                             @if (hasInputError('cpf', validation.type)) {
@@ -117,32 +117,31 @@
                                     }
                                 </div>
                             </div>
-        
-                            
-        
                             
                         </div>
 
                         <button type="submit" class="btnCadastrar" [disabled]="!cadastroForm.valid">Cadastrar</button>
                     </form> 
 
-                    <!-- <h1>{{cliente | json}}</h1> -->
-
                 </div>
             </swiper-slide>
         </swiper-container> 
 
-        <div class="loginFunc">
+        <div id="loginFunc" class="hide">
+            <button class="btn-exit" (click)="mostrarAcessoCliente()"><span class="material-symbols-outlined">
+                logout
+                </span></button>
+            <h1>Login de Funcionário</h1>
             <form (ngSubmit)="loginFuncionario(funcionarioForm.value)" [formGroup]="funcionarioForm" class="formLogin">
                 <div class="input-group">
-                    <label for="usuario">Usuário:</label>
-                <input type="text" name="usuario" formControlName="usuario" placeholder="Digite seu usuário de acesso">
+                    <label for="func-usuario">Usuário:</label>
+                <input type="text" id="func-usuario" formControlName="usuario" placeholder="Digite seu usuário de acesso">
                 </div>
                 <div class="input-group">
-                    <label for="login-senha">Senha:</label>
-                    <input type="password" id="login-senha" name="senha" formControlName="senha" required>
+                    <label for="func-senha">Senha:</label>
+                    <input type="password" id="func-senha" formControlName="senha" required>
                 </div>
-                <button type="submit" [disabled]="!funcionarioForm.valid" >Entrar</button>
+                <button type="submit" [disabled]="!funcionarioForm.valid">Entrar</button>
             </form>
         </div>
        

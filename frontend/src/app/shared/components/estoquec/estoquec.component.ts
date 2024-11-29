@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Veiculo } from '../../../models/Veiculo';
 import { VeiculoService } from '../../../services/veiculo.service';
+import { RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { NgFor } from '@angular/common';
 
 
 @Component({
   selector: 'app-estoquec',
   standalone: true,
-  imports: [FormsModule, NgFor, SearchComponent],
+  imports: [FormsModule, SearchComponent, RouterLink],
   templateUrl: './estoquec.component.html',
   styleUrl: './estoquec.component.scss'
 })

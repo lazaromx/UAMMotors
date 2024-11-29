@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, viewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, Renderer2, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import {  Funcionario} from '../../models/Funcionario'
 import {  ClienteService } from '../../services/cliente.service';
 import { FuncionarioService } from '../../services/funcionario.service';
 import { catchError } from 'rxjs';
+import { AutorizacaoService } from '../../services/autorizacao.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,6 @@ export class LoginComponent implements OnInit {
     speed: 150
   };
  
-  
   async onSlideChange(event: any) {
     const slides: Swiper = event.target;
     this.showBackSlide = !slides.isBeginning;
@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
   cadastroForm!: FormGroup;
   loginForm!: FormGroup;
   funcionarioForm!: FormGroup;
+
+  private addHide = false;
 
   public validationMessages = {
     'nome': [
@@ -73,21 +75,13 @@ export class LoginComponent implements OnInit {
     private clienteService:ClienteService,
     private funcionarioService: FuncionarioService,
     private formBuilder: FormBuilder,
-    private router: Router
-  ){
-    
-  }
+    private router: Router,
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private autorizacaoService: AutorizacaoService
+  ){ }
   ngOnInit(): void{
-    // this.cadastroForm = new FormGroup({
-    //   nome: new FormControl('', [Validators.required]),
-    //   sobrenome: new FormControl('', [Validators.required]),
-    //   email: new FormControl('', [Validators.required, Validators.email]),
-    //   senha: new FormControl('',[Validators.required]),
-    //   telefone: new FormControl(''),
-    //   cpf: new FormControl('', [Validators.required])
-    // });
     this.resetForm();
-    console.log("login~onInit()");
   }
 
   private resetForm(){
@@ -122,26 +116,19 @@ export class LoginComponent implements OnInit {
     
   }
 
-  // submit(values: Cliente) {
-  //   console.log('Formulário enviado:', values);
-  //   this.clienteService.cadastrar(values).subscribe(retorno => {
-  //     console.log('Retorno do servidor:', retorno);
-  //   });
-  // }
-
   cadastro(values: Cliente){
     
     this.clienteService.cadastrar(values).subscribe(
       retorno => {
-        console.log('Retorno do servidor:', retorno)
+        console.log('Retorno do servidor:', retorno);
         alert("Cadastro realizado com sucesso!");
+        this.router.navigate(['estoque']);
         this.resetForm();
       }, 
       (error) => {
         console.log("Erro: ", error)
         if(error.status === 409 && error.error.includes("Email já cadastrado")){
-          console.log("Este e-mail já está em uso. Por favor, escolha outro.");
-           alert("Este e-mail já está em uso. Por favor, escolha outro.");
+          alert("Este e-mail já está em uso. Por favor, escolha outro.");
           return;
         }
         
@@ -173,31 +160,45 @@ export class LoginComponent implements OnInit {
     )
   }
 
+  mostrarAcessoFuncionario(){
+    const formFunc = this.elementRef.nativeElement.querySelector("#loginFunc");
+    const formCliente = this.elementRef.nativeElement.querySelector("swiper-container");
+    console.log(formFunc);
+
+    if(this.addHide){
+      this.renderer.removeClass(formFunc, 'hide');
+      this.renderer.addClass(formCliente, 'hide');
+    }
+    this.addHide = !this.addHide;
+
+  }
+
+  mostrarAcessoCliente(){
+    const formFunc = this.elementRef.nativeElement.querySelector("#loginFunc");
+    const formCliente = this.elementRef.nativeElement.querySelector("swiper-container");
+    console.log(formFunc);
+
+    if(this.addHide){
+      this.renderer.addClass(formFunc, 'hide');
+      this.renderer.removeClass(formCliente, 'hide');
+    }
+    this.addHide = !this.addHide;
+
+  }
+
   loginFuncionario(values: Funcionario){
     this.funcionarioService.login(values.usuario, values.senha).subscribe(
       (retorno) => {
-        console.log('Retorno do servidor:', retorno)
+        console.log('Retorno do servidor:', retorno);
         alert("Login realizado com sucesso!");
         this.resetForm();
-        this.router.navigate(['funcionario'])
+        this.router.navigate(['funcionario']);
       },
       (error) =>{
-        console.log("Error: ", error)
+        console.log("Error: ", error);
         if(error.status == 404){
           alert(error.error);
         }
       })
   }
-
-  // async submit(values: Cliente){
-  //   if(values.senha !== values.confirmarSenha){
-  //     alert('Senhas diferentes');
-  //     return;
-  //   }
-  //   console.log('enviado:', values);
-  //     this.clienteService.cadastrar(values).pipe(catchError(error => {
-  //       console.log(error);
-  //       return [];
-  //     }))
-  // }
 }
