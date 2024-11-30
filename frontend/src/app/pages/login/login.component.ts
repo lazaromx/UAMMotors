@@ -11,6 +11,7 @@ import {  ClienteService } from '../../services/cliente.service';
 import { FuncionarioService } from '../../services/funcionario.service';
 import { catchError } from 'rxjs';
 import { AutorizacaoService } from '../../services/autorizacao.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -78,7 +79,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private renderer: Renderer2,
     private elementRef: ElementRef,
-    private autorizacaoService: AutorizacaoService
+    private autorizacaoService: AutorizacaoService,
   ){ }
   ngOnInit(): void{
     this.resetForm();
@@ -143,21 +144,45 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  obterDescricaoLogin(){
+    if(this.autorizacaoService.obterLoginStatus()){
+      return "Estou autorizado"
+    }
+    else{
+      return "Não estou autorizado"
+    }
+  }
+
   loginCliente(values: Cliente){
+
     this.clienteService.Login(values.email, values.senha).subscribe(  
       (retorno) => {
         console.log('Retorno do servidor:', retorno)
         alert("Login realizado com sucesso!");
-        this.resetForm();
+        this.autorizacaoService.autorizar();
         this.router.navigate(['estoque'])
       },
       (error) => {
         console.log("Erro: ", error)
-        if(error.status == 404){
-          alert(error.error);
-        }  
+          alert(error.error);  
       }
     )
+  }
+  
+  loginFuncionario(values: Funcionario){
+    this.funcionarioService.login(values.usuario, values.senha).subscribe(
+      (retorno) => {
+        console.log('Retorno do servidor:', retorno);
+        alert("Login realizado com sucesso!");
+        this.resetForm();
+        this.router.navigate(['funcionario']);
+      },
+      (error) =>{
+        console.log("Error: ", error);
+        if(error.status == 404){
+          alert(error.error);
+        }
+      })
   }
 
   mostrarAcessoFuncionario(){
@@ -184,21 +209,5 @@ export class LoginComponent implements OnInit {
     }
     this.addHide = !this.addHide;
 
-  }
-
-  loginFuncionario(values: Funcionario){
-    this.funcionarioService.login(values.usuario, values.senha).subscribe(
-      (retorno) => {
-        console.log('Retorno do servidor:', retorno);
-        alert("Login realizado com sucesso!");
-        this.resetForm();
-        this.router.navigate(['funcionario']);
-      },
-      (error) =>{
-        console.log("Error: ", error);
-        if(error.status == 404){
-          alert(error.error);
-        }
-      })
   }
 }

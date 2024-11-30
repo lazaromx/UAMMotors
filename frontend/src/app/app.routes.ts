@@ -19,7 +19,8 @@ export const routes: Routes = [
         ]
     },
     {path: 'funcionario', loadComponent: () => import('./pages/funcionario/funcionario.component').then(m => m.FuncionarioComponent)},
-    {path: 'detalhes', loadComponent: () => import('./pages/info-veiculo/info-veiculo.component').then(m => m.InfoVeiculoComponent), canActivate: [autorizadoGuard] },
+    {path: 'detalhes', loadComponent: () => import('./pages/info-veiculo/info-veiculo.component').then(m => m.InfoVeiculoComponent), 
+        canActivate: [autorizadoGuard] },
     
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

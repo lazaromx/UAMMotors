@@ -2,6 +2,7 @@ package br.uam.motors.controllers;
 
 import br.uam.motors.models.Cliente;
 import br.uam.motors.models.ClienteDTO;
+import br.uam.motors.models.LoginClienteDTO;
 import br.uam.motors.repositories.ClienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +62,11 @@ public class ClienteController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login (@Valid @RequestBody ClienteDTO dto) {
+    public ResponseEntity<?> login (@Valid @RequestBody LoginClienteDTO dto) {
         Cliente cliente = clienteRepository.findByEmailAndSenha(dto.getEmail(), dto.getSenha());
 
         if (cliente == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email ou senha incorretos");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou senha incorretos");
         }
         return ResponseEntity.ok().body(cliente);
     }

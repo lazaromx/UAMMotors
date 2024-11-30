@@ -128,9 +128,9 @@
         </swiper-container> 
 
         <div id="loginFunc" class="hide">
-            <button class="btn-exit" (click)="mostrarAcessoCliente()"><span class="material-symbols-outlined">
-                logout
-                </span></button>
+            <button class="btn-exit" (click)="mostrarAcessoCliente()">
+                <span class="material-symbols-outlined">logout</span>
+            </button>
             <h1>Login de Funcionário</h1>
             <form (ngSubmit)="loginFuncionario(funcionarioForm.value)" [formGroup]="funcionarioForm" class="formLogin">
                 <div class="input-group">

@@ -5,20 +5,26 @@ import { Injectable } from '@angular/core';
 })
 export class AutorizacaoService {
 
-  autorizado = false;
+  autorizado = JSON.parse(localStorage.getItem("conectado") || "false");
 
 
   constructor() { }
 
   autorizar(){
-    localStorage.setItem("login", "sim")
+    this.autorizado = true;
+    console.log("Autorizar: ",this.autorizado);
+    localStorage.setItem("conectado", JSON.stringify(this.autorizado));
   }
 
   deslogar(){
-    localStorage.clear()
+    this.autorizado = false;
+    console.log("Deslogado: ",this.autorizado);
+    localStorage.clear();
   }
 
   obterLoginStatus(){
-    return !!localStorage.getItem("Login")
+    // return !!localStorage.getItem("conectado");
+    console.log("Autorizado: ",this.autorizado);
+    return this.autorizado
   }
 }

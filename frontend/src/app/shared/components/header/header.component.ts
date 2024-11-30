@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
 import { RouterOutlet } from '@angular/router';
 import { Routes } from '@angular/router';
+import { AutorizacaoService } from '../../../services/autorizacao.service';
 
 
 @Component({
@@ -13,5 +14,7 @@ import { Routes } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  @Input() btnLogin: string = '';
+  constructor(public authService: AutorizacaoService){
+
+  }
 }

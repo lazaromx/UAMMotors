@@ -1,13 +1,22 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=directions_car" />
 <header>
-    <div class="empty"></div>
+    <div class="empty">
+        @if(authService.obterLoginStatus()){
+            <button (click)="authService.deslogar()" class="btn-exit">
+                <span class="material-symbols-outlined">logout</span>
+            </button>
+        }
+    </div>
     <div class="logo">
         <img src="icons/carro-16x16.png" alt="Logo AnhembiMotors">
         <h1><a href="home">Anhembi Motors</a></h1>
     </div>
+
     <div class="login">
-        <button [ngClass]="btnLogin"><a href="login">Login/Cadastro</a></button>
-    </div>
+        @if(!authService.obterLoginStatus()){
+            <button><a href="login">Login/Cadastro</a></button>
+        }
+    </div>    
 
     <!-- <app-search/> -->
 </header>
