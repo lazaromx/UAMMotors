@@ -158,7 +158,6 @@ export class LoginComponent implements OnInit {
     this.clienteService.Login(values.email, values.senha).subscribe(  
       (retorno) => {
         console.log('Retorno do servidor:', retorno)
-        alert("Login realizado com sucesso!");
         this.autorizacaoService.autorizar();
         this.router.navigate(['estoque'])
       },
@@ -173,7 +172,6 @@ export class LoginComponent implements OnInit {
     this.funcionarioService.login(values.usuario, values.senha).subscribe(
       (retorno) => {
         console.log('Retorno do servidor:', retorno);
-        alert("Login realizado com sucesso!");
         this.resetForm();
         this.router.navigate(['funcionario']);
       },

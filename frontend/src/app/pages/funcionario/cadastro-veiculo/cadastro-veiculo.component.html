@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Cadastro de Veículo</h1>
+    <form (ngSubmit)="cadastrarVeiculo(veiculoForm.value)" [formGroup]="veiculoForm" id="form-veiculo">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" formControlName="marca" placeholder="Ex: Toyota" required>
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" formControlName="modelo" placeholder="Ex: Corolla" required>
+
+        <label for="ano">Ano:</label>
+        <input type="number" id="ano" formControlName="ano" placeholder="Ex: 2024" min="1900" max="2100" required>
+
+        <label for="cor">Cor:</label>
+        <input type="text" id="cor" formControlName="cor" placeholder="Ex: Branco" required>
+
+        <label for="preco">Preço:</label>
+        <input type="number" id="preco" formControlName="preco" placeholder="Ex: 120000" step="0.01" required>
+
+        <label for="imagem">Imagem:</label>
+        <input type="text" id="imagem" formControlName="imagem" placeholder="URL da imagem">
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>

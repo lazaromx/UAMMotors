@@ -15,4 +15,8 @@ export class VeiculoService {
     return this.http.get<Veiculo[]>(this.url);
   }
 
+  cadastrar(obj: Veiculo): Observable<Veiculo[]>{
+    return this.http.post<Veiculo[]>(this.url, obj);
+  }
+
 }
