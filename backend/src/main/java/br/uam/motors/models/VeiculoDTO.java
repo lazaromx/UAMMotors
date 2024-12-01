@@ -24,8 +24,7 @@ public class VeiculoDTO {
     @NotNull(message = "Preço é obrigatório")
     private float preco;
 
-    @NotEmpty(message = "Status é obrigatório")
-    private String status;
+    private StatusEnum status = StatusEnum.ESTOQUE;
 
     private String imagem;
 
@@ -69,11 +68,11 @@ public class VeiculoDTO {
         this.preco = preco;
     }
 
-    public String getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
@@ -84,4 +83,6 @@ public class VeiculoDTO {
     public void setImagem(String imagem){
         this.imagem = imagem;
     }
+
+
 }

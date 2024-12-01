@@ -37,7 +37,7 @@ public class VeiculoController {
         veiculo.setAno(dto.getAno());
         veiculo.setCor(dto.getCor());
         veiculo.setPreco(dto.getPreco());
-        veiculo.setStatus(dto.getStatus().toString().toLowerCase());
+        veiculo.setStatus(dto.getStatus());
         veiculo.setImagem(dto.getImagem());
 
         veiculoRepository.save(veiculo);

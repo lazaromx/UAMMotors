@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "veiculos")
 public class Veiculo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,7 +25,7 @@ public class Veiculo {
     private float preco;
 
     @Column(nullable = false)
-    private String status;
+    private String status = StatusEnum.ESTOQUE.toString().toLowerCase();
 
     private String imagem;
 
