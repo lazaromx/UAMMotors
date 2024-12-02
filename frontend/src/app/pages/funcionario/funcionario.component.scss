@@ -1,3 +1,6 @@
+main{
+    min-height: calc(100vh - (var(--footer-height) + var(--header-height) + 18px));
+}
 .navbar {
     padding: 10px 20px; /* Espaçamento ao redor da barra */
     display: flex;

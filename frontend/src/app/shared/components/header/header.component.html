@@ -3,7 +3,7 @@
 <header>
     <div class="empty">
         @if(authService.obterLoginStatus()){
-            <button (click)="authService.deslogar()" class="btn-exit">
+            <button (click)="authService.deslogar()" class="btn-exit" [routerLink]="['']">
                 <span class="material-symbols-outlined">logout</span>
             </button>
         }

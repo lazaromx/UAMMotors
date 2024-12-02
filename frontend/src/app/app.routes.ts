@@ -26,10 +26,11 @@ export const routes: Routes = [
             {path: '', loadComponent: () => import('./pages/funcionario/estoque-func/estoque-func.component').then(m => m.EstoqueFuncComponent)},
             {path: 'cadastro-veiculo', loadComponent: () => import('./pages/funcionario/cadastro-veiculo/cadastro-veiculo.component').then(m => m.CadastroVeiculoComponent)},
             {path: 'relatorio', loadComponent: ()=> import('./pages/funcionario/relatorio/relatorio.component').then(m => m.RelatorioComponent)},
-        ]
+        ],
+        canActivate: [autorizadoGuard]
     },
 
-    {path: 'detalhes', loadComponent: () => import('./pages/info-veiculo/info-veiculo.component').then(m => m.InfoVeiculoComponent), 
+    {path: 'detalhes/:id', loadComponent: () => import('./pages/info-veiculo/info-veiculo.component').then(m => m.InfoVeiculoComponent), 
         canActivate: [autorizadoGuard] },
     
     { path: '**', redirectTo: '', pathMatch: 'full' },

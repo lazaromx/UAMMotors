@@ -3,13 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { Veiculo } from '../../../models/Veiculo';
 import { VeiculoService } from '../../../services/veiculo.service';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../../../environments/environment';
+
 
 
 @Component({
   selector: 'app-estoquec',
   standalone: true,
-  imports: [FormsModule, SearchComponent, RouterLink],
+  imports: [FormsModule, RouterLink],
   templateUrl: './estoquec.component.html',
   styleUrl: './estoquec.component.scss'
 })
@@ -17,13 +17,17 @@ export class EstoquecComponent {
   veiculos: Veiculo[] = [];
   search: any;
 
-  constructor(private service: VeiculoService){
+  constructor(private readonly service: VeiculoService){
 
   }
 
   exibirVeiculos(): void{
     this.service.exibir().subscribe(retorno => this.veiculos = retorno);
   }
+
+  // exibirVeiculoPorId(id: number): void{
+  //   this.service.exibirPorId(id).subscribe(retorno => this.veiculos = retorno);
+  // }
 
   formatarPreco(preco: number){
     return new Intl.NumberFormat('pt-Br').format(preco);
@@ -32,5 +36,5 @@ export class EstoquecComponent {
   ngOnInit(){
     this.exibirVeiculos();
   }
-}import { SearchComponent } from '../search/search.component';
+}
 

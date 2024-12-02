@@ -1,17 +1,16 @@
-<div class="container">
-    <div class="car-details">
-        <div class="car-image">
-            <img id="carImg" src="" alt="Car Image">
-        </div>
-        <div class="car-info">
-            <h2 id="carName"></h2>
-            <p id="carYear"></p>
-            <p id="carColor"></p>
-            <p id="carPrice"></p>
-            <p id="carEngine"></p>
-            <p id="carTransmission"></p>
-            <p id="carFuel"></p>
-            <button class="buy-button" id="buyButton">Comprar</button>
-        </div>
+<div class="car-details">
+    <div class="car-image">
+        <img id="carImg" [src]="veiculo.imagem" alt="Car Image">
+    </div>
+    <div class="car-info">
+        <h2 id="carName">{{veiculo.modelo}}</h2>
+        <p id="carYear">{{veiculo.ano}}</p>
+        <p id="carColor">{{veiculo.cor}}</p>
+        <p id="carPrice">{{veiculo.preco}}</p>
+        <p id="carEngine"></p>
+        <p id="carTransmission"></p>
+        <p id="carFuel"></p>
+        <button class="buy-button" id="buyButton">Comprar</button>
     </div>
 </div>
+

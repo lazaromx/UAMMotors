@@ -140,8 +140,8 @@ export class LoginComponent implements OnInit {
           alert("Este cpf já está em uso.");
           return;
         }
-        
-      });
+      }
+    );
   }
 
   obterDescricaoLogin(){
@@ -172,7 +172,7 @@ export class LoginComponent implements OnInit {
     this.funcionarioService.login(values.usuario, values.senha).subscribe(
       (retorno) => {
         console.log('Retorno do servidor:', retorno);
-        this.resetForm();
+        this.autorizacaoService.autorizar();
         this.router.navigate(['funcionario']);
       },
       (error) =>{
@@ -180,7 +180,8 @@ export class LoginComponent implements OnInit {
         if(error.status == 404){
           alert(error.error);
         }
-      })
+      }
+    )
   }
 
   mostrarAcessoFuncionario(){
