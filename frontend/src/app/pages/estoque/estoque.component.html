@@ -1,1 +1,5 @@
-<app-estoquec />
+<div class="car-list">
+    @for (veiculo of veiculos; track $index) {
+        <app-veiculo [veiculo]="veiculo" (confirmar)="onReservar($event)"/>
+    }
+</div>

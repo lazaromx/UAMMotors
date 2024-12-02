@@ -23,4 +23,8 @@ export class VeiculoService {
     return this.http.post<Veiculo[]>(this.url, obj);
   }
 
+  editarStatus(id: number, obj: Veiculo): Observable<Veiculo>{
+    return this.http.put<Veiculo>(this.url + '/' + id, obj);
+  }
+
 }

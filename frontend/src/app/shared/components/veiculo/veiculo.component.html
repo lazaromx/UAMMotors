@@ -1,0 +1,12 @@
+<div class="car-item">
+  <img [src]="veiculo().imagem" [alt]="veiculo().modelo + ' ' + veiculo().cor" />
+  <h3 id="marcaModelo">{{ veiculo().marca }} {{ veiculo().modelo }}</h3>
+  <p id="ano">{{ veiculo().ano }}</p>
+  <p id="cor">{{ veiculo().cor }}</p>
+  <p id="preco">{{ veiculo().preco | currency:'BRL' }}</p >
+  @if (veiculo().status.toLocaleLowerCase() === 'estoque') {
+    <button (click)="onConfirmar()">Comprar</button>   
+  } @else {
+    <button style="background-color: #ccc; cursor: not-allowed;" disabled>Reservado</button>    	
+  }
+</div>

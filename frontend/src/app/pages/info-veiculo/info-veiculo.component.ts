@@ -14,16 +14,26 @@ import { Observable } from 'rxjs';
 })
 export class InfoVeiculoComponent implements OnInit{
   veiculo: Veiculo = new Veiculo(); 
+  veiculos: Veiculo[] = [];
   constructor(
     private service: VeiculoService,
     private route: ActivatedRoute
-  ) {}  
-
-  
-  
+  ) {} 
 
   ngOnInit(){
     const veiculoId = Number(this.route.snapshot.paramMap.get('id'));
     this.service.exibirPorId(veiculoId).subscribe(retorno => this.veiculo = retorno);
+  }
+
+  reservar(){
+    this.service.editarStatus(this.veiculo.id, this.veiculo).subscribe(
+      (retorno) => {
+        this.veiculo.status = 'vendido';
+        console.log("Retorno do servidor:", retorno);
+      },
+      (error) => {
+        console.log("Erro: ", error);
+      }
+    );
   }
 }
