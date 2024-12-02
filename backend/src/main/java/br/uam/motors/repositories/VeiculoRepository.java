@@ -4,7 +4,9 @@ import br.uam.motors.models.Veiculo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface VeiculoRepository extends CrudRepository<Veiculo, Integer> {
-    public Veiculo findById(int id);
+    Optional<Veiculo> findById(int id);
 }

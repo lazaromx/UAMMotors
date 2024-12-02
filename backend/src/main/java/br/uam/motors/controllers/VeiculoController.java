@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("veiculos")
 //@CrossOrigin(origins="http://localhost:4200")
@@ -25,10 +27,15 @@ public class VeiculoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getVeiculo(@PathVariable int id) {
-        Veiculo veiculo = veiculoRepository.findById(id);
-        return ResponseEntity.ok(veiculo);
+    public ResponseEntity<?> getVeiculo(@PathVariable int id){
+        return veiculoRepository.findById(id)
+                .map(veiculo -> ResponseEntity.ok(veiculo))
+                .orElse(ResponseEntity.notFound().build());
     }
+//    public ResponseEntity<?> getVeiculo(@PathVariable int id) {
+//        Veiculo veiculo = veiculoRepository.findById(id);
+//        return ResponseEntity.ok(veiculo);
+//    }
 
     @PostMapping()
     public ResponseEntity<?> cadastrarVeiculo (@Valid @RequestBody VeiculoDTO dto, BindingResult result){
@@ -49,6 +56,17 @@ public class VeiculoController {
 
         veiculoRepository.save(veiculo);
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculo);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Veiculo> atualizarVeiculo(@PathVariable int id, @Valid @RequestBody Veiculo veiculo) {
+        return veiculoRepository.findById(id)
+                .map(recordFound -> {
+                    recordFound.setStatus(veiculo.getStatus().toLowerCase()); // Ajusta o status
+                    Veiculo updated = veiculoRepository.save(recordFound);   // Salva o veículo atualizado
+                    return ResponseEntity.ok(updated);                       // Retorna o veículo atualizado
+                })
+                .orElse(ResponseEntity.notFound().build());                  // Retorna 404 se não encontrado
     }
 
 }
