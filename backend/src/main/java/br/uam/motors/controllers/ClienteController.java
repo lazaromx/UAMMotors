@@ -31,12 +31,6 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Iterable<Cliente>> getCliente() {
-        Iterable<Cliente> clientes = clienteRepository.findAll();
-        return ResponseEntity.ok(clientes);
-    }
-
     @PostMapping()
     public ResponseEntity<?> cadastrar (@Valid @RequestBody ClienteDTO dto, BindingResult result){
         if(clienteRepository.findByEmail(dto.getEmail()) != null){

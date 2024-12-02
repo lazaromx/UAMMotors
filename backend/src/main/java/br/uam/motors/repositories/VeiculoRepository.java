@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VeiculoRepository extends CrudRepository<Veiculo, Integer> {
-
+    public Veiculo findById(int id);
 }

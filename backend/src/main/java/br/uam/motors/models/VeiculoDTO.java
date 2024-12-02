@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public class VeiculoDTO {
+    private int id;
 
     @NotEmpty(message = "Marca é obrigatória")
     private String marca;
@@ -27,6 +28,10 @@ public class VeiculoDTO {
     private StatusEnum status = StatusEnum.ESTOQUE;
 
     private String imagem;
+
+    public int getId(){
+        return id;
+    }
 
     public String getMarca() {
         return marca;

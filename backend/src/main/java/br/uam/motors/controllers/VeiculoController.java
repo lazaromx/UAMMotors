@@ -1,5 +1,6 @@
 package br.uam.motors.controllers;
 
+import br.uam.motors.models.Cliente;
 import br.uam.motors.models.Veiculo;
 import br.uam.motors.models.VeiculoDTO;
 import br.uam.motors.repositories.VeiculoRepository;
@@ -23,9 +24,15 @@ public class VeiculoController {
         return ResponseEntity.ok(veiculos);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getVeiculo(@PathVariable int id) {
+        Veiculo veiculo = veiculoRepository.findById(id);
+        return ResponseEntity.ok(veiculo);
+    }
+
     @PostMapping()
     public ResponseEntity<?> cadastrarVeiculo (@Valid @RequestBody VeiculoDTO dto, BindingResult result){
-       
+
         if(result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.getAllErrors());
         }
@@ -44,4 +51,4 @@ public class VeiculoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculo);
     }
 
-}    
+}
