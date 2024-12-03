@@ -88,4 +88,3 @@ YouTube: https://youtu.be/D2O50q3OVBU
 - [garrotii](https://www.github.com/garrotii)
 - [lazaromx](https://github.com/lazaromx)
 - [MKDark](https://github.com/MateusKalil)
-- [leosantana153](https://github.com/leosantana153)
