@@ -17,4 +17,8 @@ export class HeaderComponent {
   constructor(public authService: AutorizacaoService){
 
   }
+
+  aumentarFonte(){
+    document.body.classList.toggle("aumentarFonte");
+  }
 }

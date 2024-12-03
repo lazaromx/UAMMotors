@@ -7,6 +7,9 @@
                 <span class="material-symbols-outlined">logout</span>
             </button>
         }
+        @else {
+            <button (click)="aumentarFonte()" class="aumentarFonte">Aumentar Fonte</button>
+        }
     </div>
     <div class="logo">
         <img src="icons/carro-16x16.png" alt="Logo AnhembiMotors">
@@ -16,6 +19,9 @@
     <div class="login">
         @if(!authService.obterLoginStatus()){
             <button><a href="login">Login/Cadastro</a></button>
+        }
+        @else {
+            <button (click)="aumentarFonte()" class="aumentarFonte">Aumentar Fonte</button>
         }
     </div>    
 

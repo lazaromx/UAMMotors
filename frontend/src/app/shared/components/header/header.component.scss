@@ -8,9 +8,6 @@ header{
 
     .empty, .login{
         width: 15%;
-    }
-
-    .login{
         display: flex;
         justify-content: center;
     }
@@ -34,6 +31,21 @@ header{
             height: 24px;
         }
     }
+
+    .aumentarFonte{
+        // position: fixed;
+        // bottom: 20px;
+        // right: 20px;
+        background-color: #000;
+        color: #fff;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        // border-radius: 50%;
+        // width: 50px;
+        // cursor: pointer;
+        // z-index: 1000;
+    }
 }
 
 button{
@@ -44,6 +56,7 @@ button{
         color: var(--secondary-text-color);
     }
 }
+
 .btn-Login {
     background-color: blue;
 }
@@ -51,3 +64,6 @@ button{
 .btn-exit{
     background: none;
 }
+
+
+
