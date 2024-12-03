@@ -77,9 +77,9 @@ Exibe a opção de visualizar os veículos em estoque, com botões para cadastra
 
 Projeto no GitHub: https://github.com/lazaromx/UAMMotors
 
-Trello: https://app.uizard.io/p/67072d9f
+Protótipo Uizard: https://app.uizard.io/p/67072d9f
 
-YouTube:
+YouTube: https://youtu.be/D2O50q3OVBU
 
 ---
 
