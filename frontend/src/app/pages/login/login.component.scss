@@ -37,8 +37,8 @@ label{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 400px; 
-    max-width: 80%; 
+    width: 410px; 
+    max-width: auto;
     // color: #067bf8;
 
     h1{
@@ -98,8 +98,7 @@ label{
     align-items: center;
     
     p{
-        margin-right: 5px;
-        font-size: 13px;
+        font-size: 16px;
         color: #fff;
 
     }
@@ -117,7 +116,7 @@ label{
     }
 
     p{
-        font-size:13px;
+        font-size:16px;
         font-family: sans-serif;
     }
 }
@@ -125,11 +124,13 @@ label{
 .btnCadastrar{
     background-color: #067bf8;
     color: #fff;
+    font-size: 16px
 }
 
 .funcionario-btn{
     p{
         color: #1a1a1a;
+        font-size: 16px;
     }
 }
 
@@ -168,6 +169,10 @@ label{
             border: 0;
         }
     }
+}
+
+.slide{
+    padding: 5px;
 }
 
 

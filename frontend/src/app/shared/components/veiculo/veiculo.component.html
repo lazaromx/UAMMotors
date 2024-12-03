@@ -5,7 +5,7 @@
   <p id="cor">{{ veiculo().cor }}</p>
   <p id="preco">{{ veiculo().preco | currency:'BRL' }}</p >
   @if (veiculo().status.toLocaleLowerCase() === 'estoque') {
-    <button (click)="onConfirmar()">Comprar</button>   
+    <button (click)="onConfirmar()">Reservar</button>   
   } @else {
     <button style="background-color: #ccc; cursor: not-allowed;" disabled>Reservado</button>    	
   }

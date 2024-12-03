@@ -68,7 +68,9 @@ export class LoginComponent implements OnInit {
       { type: 'required', message: 'Obrigatório.' }
     ],
     'cpf': [
-      { type: 'required', message: 'Cpf é Obrigatório.' }
+      { type: 'required', message: 'Cpf é Obrigatório.' },
+      { type: 'minlength', message: 'Cpf invalido.' },
+
     ]
   }
 
@@ -98,7 +100,7 @@ export class LoginComponent implements OnInit {
       senha: new FormControl('',[Validators.required, Validators.minLength(8)]),
       confirmarSenha: new FormControl('',[Validators.required]),
       telefone: new FormControl(''),
-      cpf: new FormControl('', [Validators.required])
+      cpf: new FormControl('', [Validators.required, Validators.minLength(11)])
     })
 
     this.funcionarioForm = this.formBuilder.group({
@@ -122,7 +124,7 @@ export class LoginComponent implements OnInit {
     this.clienteService.cadastrar(values).subscribe(
       retorno => {
         console.log('Retorno do servidor:', retorno);
-        alert("Cadastro realizado com sucesso!");
+        this.autorizacaoService.autorizar();
         this.router.navigate(['estoque']);
         this.resetForm();
       }, 
