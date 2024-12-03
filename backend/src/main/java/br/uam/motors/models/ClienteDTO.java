@@ -18,7 +18,7 @@ public class ClienteDTO {
     private String endereco;
 
     @NotEmpty(message = "Email é obrigatório")
-    @Email
+    @Email(message = "Email é obrigatório")
     private String email;
 
     @NotEmpty(message = "Senha é obrigatório")
