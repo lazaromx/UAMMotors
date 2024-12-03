@@ -9,6 +9,8 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int idCliente;
+
     @Column(nullable = false)
     private String marca;
 
@@ -35,6 +37,14 @@ public class Veiculo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getMarca() {

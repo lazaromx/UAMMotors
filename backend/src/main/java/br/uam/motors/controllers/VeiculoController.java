@@ -1,8 +1,6 @@
 package br.uam.motors.controllers;
 
-import br.uam.motors.models.Cliente;
-import br.uam.motors.models.Veiculo;
-import br.uam.motors.models.VeiculoDTO;
+import br.uam.motors.models.*;
 import br.uam.motors.repositories.VeiculoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,15 +56,20 @@ public class VeiculoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculo);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Veiculo> atualizarVeiculo(@PathVariable int id, @Valid @RequestBody Veiculo veiculo) {
-        return veiculoRepository.findById(id)
+    @PutMapping()
+    public ResponseEntity<?> atualizarVeiculo(@RequestBody ReservaVeiculoDTO reserva) {
+
+        return veiculoRepository.findById(reserva.getIdVeiculo())
                 .map(recordFound -> {
-                    recordFound.setStatus(veiculo.getStatus().toLowerCase()); // Ajusta o status
-                    Veiculo updated = veiculoRepository.save(recordFound);   // Salva o veículo atualizado
-                    return ResponseEntity.ok(updated);                       // Retorna o veículo atualizado
+                    if(recordFound.getStatus().equals(StatusEnum.VENDIDO.toString().toLowerCase())) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT).build();
+                    }
+                    recordFound.setStatus(StatusEnum.VENDIDO.toString().toLowerCase());
+                    recordFound.setIdCliente(reserva.getIdCliente());
+                    Veiculo updated = veiculoRepository.save(recordFound);
+                    return ResponseEntity.ok(updated);
                 })
-                .orElse(ResponseEntity.notFound().build());                  // Retorna 404 se não encontrado
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
