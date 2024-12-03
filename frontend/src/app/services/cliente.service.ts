@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class ClienteService {
   private url: string = environment.apiUrl + '/clientes';
+  private _cliente = new Cliente();
 
   constructor(private http: HttpClient) {
     console.log("environment.production", environment.production)
@@ -25,5 +26,12 @@ export class ClienteService {
   Login(email: string, senha: string): Observable<Cliente>{
     const loginData = {email, senha};
     return this.http.post<Cliente>(this.url + '/login', loginData);
+  }
+
+  get cliente(): Cliente{ 
+    return this._cliente
+  }
+  set cliente(value: Cliente) { 
+    this._cliente = value;
   }
 }

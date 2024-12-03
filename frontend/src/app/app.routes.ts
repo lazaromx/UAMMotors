@@ -25,7 +25,6 @@ export const routes: Routes = [
         children: [
             {path: '', loadComponent: () => import('./pages/funcionario/estoque-func/estoque-func.component').then(m => m.EstoqueFuncComponent)},
             {path: 'cadastro-veiculo', loadComponent: () => import('./pages/funcionario/cadastro-veiculo/cadastro-veiculo.component').then(m => m.CadastroVeiculoComponent)},
-            {path: 'relatorio', loadComponent: ()=> import('./pages/funcionario/relatorio/relatorio.component').then(m => m.RelatorioComponent)},
         ],
         canActivate: [autorizadoGuard]
     },

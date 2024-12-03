@@ -3,13 +3,17 @@ import { environment } from '../../environments/environment';
 import { Veiculo } from '../models/Veiculo';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ClienteService } from './cliente.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VeiculoService {
   private url: string = environment.apiUrl + '/veiculos';
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private clienteService: ClienteService
+  ) { }
 
   exibir(): Observable<Veiculo[]>{
     return this.http.get<Veiculo[]>(this.url);
@@ -24,7 +28,8 @@ export class VeiculoService {
   }
 
   editarStatus(id: number, obj: Veiculo): Observable<Veiculo>{
-    return this.http.put<Veiculo>(this.url + '/' + id, obj);
+    const reserva = {idVeiculo: obj.id, idCliente: this.clienteService.cliente.id!};
+    return this.http.put<Veiculo>(this.url, reserva);
   }
 
 }

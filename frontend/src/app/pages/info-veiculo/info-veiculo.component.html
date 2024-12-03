@@ -1,16 +1,28 @@
-<div class="car-details">
-    <div class="car-image">
-        <img id="carImg" [src]="veiculo.imagem" alt="Car Image">
-    </div>
-    <div class="car-info">
-        <h2 id="carName">Marca: {{veiculo.marca}} Modelo: {{veiculo.modelo}}</h2>
-        <p id="carYear">Ano: {{veiculo.ano}}</p>
-        <p id="carColor">Cor: {{veiculo.cor}}</p>
-        <p id="carPrice">Preço: {{veiculo.preco}}</p>
-        <p id="carEngine"></p>
-        <p id="carTransmission"></p>
-        <p id="carFuel"></p>
-        <button class="buy-button" id="buyButton" (click)="reservar()">Comprar</button>
-    </div>
-</div>
+<app-header />
+<main>
+    <router-outlet>]
+        <div class="car-details">
+            <div class="car-image">
+                <img id="carImg" [src]="veiculo.imagem" alt="Car Image">
+            </div>
+            <div class="car-info">
+                <h2 id="carName">Marca: {{veiculo.marca}} Modelo: {{veiculo.modelo}}</h2>
+                <p id="carYear">Ano: {{veiculo.ano}}</p>
+                <p id="carColor">Cor: {{veiculo.cor}}</p>
+                <p id="carPrice">Preço: {{veiculo.preco}}</p>
+                <p id="carEngine"></p>
+                <p id="carTransmission"></p>
+                <p id="carFuel"></p>
+                @if(veiculo.status.toLocaleLowerCase() === 'estoque') {
+                    <button class="buy-button" id="buyButton" (click)="reservar()">Comprar</button>
+                }
+                @else {
+                    <button class="buy-button" id="buyButton" style="background-color: #ccc; cursor: not-allowed;" disabled>Reservado</button>
+                }
+                
+            </div>
+        </div>
+    </router-outlet>   
+</main>
+<app-footer />
 

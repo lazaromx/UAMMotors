@@ -7,7 +7,7 @@
     --secondary-text-color: #fefefe;
     --border-color: #a1a1a1;
 
-    --header-height: 113px;
+    --header-height: 63px;
     --footer-height: 80px;
 
     --background-image: url("/uamMotors.jpg");
@@ -67,7 +67,8 @@ button {
 main {
     display: flex;
     align-items: center;
-    justify-content: center;    // height: calc(100vh - var(--footer-height));
+    justify-content: center;
+    min-height: calc(100vh - (var(--footer-height) + var(--header-height)));
 }
 
 a {

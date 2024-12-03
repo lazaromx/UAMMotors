@@ -157,6 +157,8 @@ export class LoginComponent implements OnInit {
 
     this.clienteService.Login(values.email, values.senha).subscribe(  
       (retorno) => {
+        this.clienteService.cliente = retorno;
+        
         console.log('Retorno do servidor:', retorno)
         this.autorizacaoService.autorizar();
         this.router.navigate(['estoque'])
