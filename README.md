@@ -83,7 +83,7 @@ YouTube: https://youtu.be/D2O50q3OVBU
 
 ---
 
-## Autores
+## Autores:
 
 - [garrotii](https://www.github.com/garrotii)
 - [lazaromx](https://github.com/lazaromx)
