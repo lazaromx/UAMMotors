@@ -30,7 +30,9 @@ export const routes: Routes = [
     },
 
     {path: 'detalhes/:id', loadComponent: () => import('./pages/info-veiculo/info-veiculo.component').then(m => m.InfoVeiculoComponent), 
-        canActivate: [autorizadoGuard] },
+        canActivate: [autorizadoGuard] 
+    },
+    {path: 'sobrenos', loadComponent: () => import('./pages/sobre/sobre.component').then(m => m.SobreComponent)},
     
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
